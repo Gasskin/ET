@@ -14,22 +14,37 @@ namespace cfg
    
 public sealed partial class Tables
 {
-    public item.TbItem TbItem {get; }
+    public AITable AITable {get; }
+    public StartMachineTable StartMachineTable {get; }
+    public StartProcessTable StartProcessTable {get; }
+    public StartZoneTable StartZoneTable {get; }
 
     public Tables(System.Func<string, JsonElement> loader)
     {
         var tables = new System.Collections.Generic.Dictionary<string, object>();
-        TbItem = new item.TbItem(loader("item_tbitem")); 
-        tables.Add("item.TbItem", TbItem);
+        AITable = new AITable(loader("aitable")); 
+        tables.Add("AITable", AITable);
+        StartMachineTable = new StartMachineTable(loader("startmachinetable")); 
+        tables.Add("StartMachineTable", StartMachineTable);
+        StartProcessTable = new StartProcessTable(loader("startprocesstable")); 
+        tables.Add("StartProcessTable", StartProcessTable);
+        StartZoneTable = new StartZoneTable(loader("startzonetable")); 
+        tables.Add("StartZoneTable", StartZoneTable);
         PostInit();
 
-        TbItem.Resolve(tables); 
+        AITable.Resolve(tables); 
+        StartMachineTable.Resolve(tables); 
+        StartProcessTable.Resolve(tables); 
+        StartZoneTable.Resolve(tables); 
         PostResolve();
     }
 
     public void TranslateText(System.Func<string, string, string> translator)
     {
-        TbItem.TranslateText(translator); 
+        AITable.TranslateText(translator); 
+        StartMachineTable.TranslateText(translator); 
+        StartProcessTable.TranslateText(translator); 
+        StartZoneTable.TranslateText(translator); 
     }
     
     partial void PostInit();

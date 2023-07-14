@@ -7,44 +7,47 @@
 //------------------------------------------------------------------------------
 using Bright.Serialization;
 using System.Collections.Generic;
-using SimpleJSON;
+using System.Text.Json;
 
 
 
-namespace cfg.item
-{ 
-
-public sealed partial class ItemExchange :  Bright.Config.BeanBase 
+namespace cfg
 {
-    public ItemExchange(JSONNode _json) 
+
+public sealed partial class StartZoneConfig :  Bright.Config.BeanBase 
+{
+    public StartZoneConfig(JsonElement _json) 
     {
-        { if(!_json["id"].IsNumber) { throw new SerializationException(); }  Id = _json["id"]; }
-        { if(!_json["num"].IsNumber) { throw new SerializationException(); }  Num = _json["num"]; }
+        Id = _json.GetProperty("Id").GetInt32();
+        DBConnection = _json.GetProperty("DBConnection").GetString();
+        DBName = _json.GetProperty("DBName").GetString();
         PostInit();
     }
 
-    public ItemExchange(int id, int num ) 
+    public StartZoneConfig(int Id, string DBConnection, string DBName ) 
     {
-        this.Id = id;
-        this.Num = num;
+        this.Id = Id;
+        this.DBConnection = DBConnection;
+        this.DBName = DBName;
         PostInit();
     }
 
-    public static ItemExchange DeserializeItemExchange(JSONNode _json)
+    public static StartZoneConfig DeserializeStartZoneConfig(JsonElement _json)
     {
-        return new item.ItemExchange(_json);
+        return new StartZoneConfig(_json);
     }
 
-    /// <summary>
-    /// 道具id
-    /// </summary>
     public int Id { get; private set; }
     /// <summary>
-    /// 道具数量
+    /// 数据库地址
     /// </summary>
-    public int Num { get; private set; }
+    public string DBConnection { get; private set; }
+    /// <summary>
+    /// 数据库名
+    /// </summary>
+    public string DBName { get; private set; }
 
-    public const int __ID__ = 1814660465;
+    public const int __ID__ = -457316368;
     public override int GetTypeId() => __ID__;
 
     public  void Resolve(Dictionary<string, object> _tables)
@@ -60,10 +63,11 @@ public sealed partial class ItemExchange :  Bright.Config.BeanBase
     {
         return "{ "
         + "Id:" + Id + ","
-        + "Num:" + Num + ","
+        + "DBConnection:" + DBConnection + ","
+        + "DBName:" + DBName + ","
         + "}";
     }
-    
+
     partial void PostInit();
     partial void PostResolve();
 }

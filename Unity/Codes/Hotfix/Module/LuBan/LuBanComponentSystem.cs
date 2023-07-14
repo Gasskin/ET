@@ -16,8 +16,6 @@ namespace ET
                 LuBanComponent.Instance = self;
                 self.tables = new Tables(file =>
                         JSON.Parse(File.ReadAllText($"{Application.dataPath}/../Codes/Model/Generate/LuBan/Data/{file}.json")));
-
-                Debug.LogError(Tables.TbItem.Get(10000).Desc);
             }
         }
         

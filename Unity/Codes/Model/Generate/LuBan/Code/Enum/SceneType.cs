@@ -7,19 +7,22 @@
 //------------------------------------------------------------------------------
 
 
-namespace cfg.test
+namespace cfg.Enum
 { 
-    [System.Flags]
-    public enum AccessFlag
+    public enum SceneType
     {
-        WRITE = 1,
-        READ = 2,
-        TRUNCATE = 4,
-        NEW = 8,
-        /// <summary>
-        /// 位标记使用示例
-        /// </summary>
-        READ_WRITE = WRITE|READ,
+        Process = 0,
+        Manager = 1,
+        Realm = 2,
+        Gate = 3,
+        Http = 4,
+        Location = 5,
+        Map = 6,
+        Client = 30,
+        Zone = 31,
+        Login = 32,
+        Robot = 33,
+        Current = 34,
     }
 
 } 
