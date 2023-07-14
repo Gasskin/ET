@@ -1,7 +1,7 @@
 ﻿using System.Text.Json;
 using cfg;
 
-namespace ET.Module.LuBan
+namespace ET
 {
     [FriendClass(typeof(LuBanComponent))]
     public static class LuBanComponentSystem

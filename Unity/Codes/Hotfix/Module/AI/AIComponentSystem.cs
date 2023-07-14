@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using UnityEngine;
 
 namespace ET
@@ -53,11 +54,12 @@ namespace ET
                 return;
             }
 
-            var oneAI = AIConfigCategory.Instance.AIConfigs[self.AIConfigId];
+            var oneAI = LuBanComponentSystem.Tables.AITable.DataList.Where((config) => config.AIConfigId == self.AIConfigId);
+            
+            // var oneAI = AIConfigCategory.Instance.AIConfigs[self.AIConfigId];
 
-            foreach (AIConfig aiConfig in oneAI.Values)
+            foreach (var aiConfig in oneAI)
             {
-
                 AIDispatcherComponent.Instance.AIHandlers.TryGetValue(aiConfig.Name, out AAIHandler aaiHandler);
 
                 if (aaiHandler == null)
