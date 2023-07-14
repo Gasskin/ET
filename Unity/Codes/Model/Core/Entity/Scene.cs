@@ -8,7 +8,7 @@
             get;
         }
 
-        public SceneType SceneType
+        public cfg.Enum.SceneType SceneType
         {
             get;
         }
@@ -19,7 +19,7 @@
             set;
         }
 
-        public Scene(long instanceId, int zone, SceneType sceneType, string name, Entity parent)
+        public Scene(long instanceId, int zone, cfg.Enum.SceneType sceneType, string name, Entity parent)
         {
             this.Id = instanceId;
             this.InstanceId = instanceId;
@@ -34,7 +34,7 @@
             Log.Info($"scene create: {this.SceneType} {this.Name} {this.Id} {this.InstanceId} {this.Zone}");
         }
 
-        public Scene(long id, long instanceId, int zone, SceneType sceneType, string name, Entity parent)
+        public Scene(long id, long instanceId, int zone, cfg.Enum.SceneType sceneType, string name, Entity parent)
         {
             this.Id = id;
             this.InstanceId = instanceId;

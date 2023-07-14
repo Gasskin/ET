@@ -8,8 +8,8 @@ namespace ET
             long instanceId,
             int zone,
             string name,
-            SceneType sceneType,
-            StartSceneConfig startSceneConfig = null
+            cfg.Enum.SceneType sceneType,
+            cfg.StartSceneConfig startSceneConfig = null
         )
         {
             await ETTask.CompletedTask;
@@ -20,7 +20,7 @@ namespace ET
 
             switch (scene.SceneType)
             {
-                case SceneType.Robot:
+                case cfg.Enum.SceneType.Robot:
                     scene.AddComponent<RobotManagerComponent>();
                     break;
             }

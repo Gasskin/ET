@@ -19,19 +19,19 @@ public sealed partial class StartSceneConfig :  Bright.Config.BeanBase
     public StartSceneConfig(JsonElement _json) 
     {
         Id = _json.GetProperty("Id").GetInt32();
-        Process = _json.GetProperty("Process").GetInt32();
-        Zone = _json.GetProperty("Zone").GetInt32();
+        StartProcessConfig = _json.GetProperty("StartProcessConfig").GetInt32();
+        StartZoneConfig = _json.GetProperty("StartZoneConfig").GetInt32();
         SceneType = (Enum.SceneType)_json.GetProperty("SceneType").GetInt32();
         Name = _json.GetProperty("Name").GetString();
         OuterPort = _json.GetProperty("OuterPort").GetInt32();
         PostInit();
     }
 
-    public StartSceneConfig(int Id, int Process, int Zone, Enum.SceneType SceneType, string Name, int OuterPort ) 
+    public StartSceneConfig(int Id, int StartProcessConfig, int StartZoneConfig, Enum.SceneType SceneType, string Name, int OuterPort ) 
     {
         this.Id = Id;
-        this.Process = Process;
-        this.Zone = Zone;
+        this.StartProcessConfig = StartProcessConfig;
+        this.StartZoneConfig = StartZoneConfig;
         this.SceneType = SceneType;
         this.Name = Name;
         this.OuterPort = OuterPort;
@@ -47,11 +47,13 @@ public sealed partial class StartSceneConfig :  Bright.Config.BeanBase
     /// <summary>
     /// 所属进程
     /// </summary>
-    public int Process { get; private set; }
+    public int StartProcessConfig { get; private set; }
+    public StartProcessConfig StartProcessConfig_Ref { get; private set; }
     /// <summary>
     /// 所属区
     /// </summary>
-    public int Zone { get; private set; }
+    public int StartZoneConfig { get; private set; }
+    public StartZoneConfig StartZoneConfig_Ref { get; private set; }
     /// <summary>
     /// 类型
     /// </summary>
@@ -70,6 +72,8 @@ public sealed partial class StartSceneConfig :  Bright.Config.BeanBase
 
     public  void Resolve(Dictionary<string, object> _tables)
     {
+        this.StartProcessConfig_Ref = (_tables["StartProcessTable"] as StartProcessTable).GetOrDefault(StartProcessConfig);
+        this.StartZoneConfig_Ref = (_tables["StartZoneTable"] as StartZoneTable).GetOrDefault(StartZoneConfig);
         PostResolve();
     }
 
@@ -81,8 +85,8 @@ public sealed partial class StartSceneConfig :  Bright.Config.BeanBase
     {
         return "{ "
         + "Id:" + Id + ","
-        + "Process:" + Process + ","
-        + "Zone:" + Zone + ","
+        + "StartProcessConfig:" + StartProcessConfig + ","
+        + "StartZoneConfig:" + StartZoneConfig + ","
         + "SceneType:" + SceneType + ","
         + "Name:" + Name + ","
         + "OuterPort:" + OuterPort + ","

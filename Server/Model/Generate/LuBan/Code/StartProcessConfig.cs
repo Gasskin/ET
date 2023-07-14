@@ -19,18 +19,18 @@ public sealed partial class StartProcessConfig :  Bright.Config.BeanBase
     public StartProcessConfig(JsonElement _json) 
     {
         Id = _json.GetProperty("Id").GetInt32();
-        MachineId = _json.GetProperty("MachineId").GetInt32();
         InnerPort = _json.GetProperty("InnerPort").GetInt32();
         AppName = _json.GetProperty("AppName").GetString();
+        StartMachineConfig = _json.GetProperty("StartMachineConfig").GetInt32();
         PostInit();
     }
 
-    public StartProcessConfig(int Id, int MachineId, int InnerPort, string AppName ) 
+    public StartProcessConfig(int Id, int InnerPort, string AppName, int StartMachineConfig ) 
     {
         this.Id = Id;
-        this.MachineId = MachineId;
         this.InnerPort = InnerPort;
         this.AppName = AppName;
+        this.StartMachineConfig = StartMachineConfig;
         PostInit();
     }
 
@@ -41,10 +41,6 @@ public sealed partial class StartProcessConfig :  Bright.Config.BeanBase
 
     public int Id { get; private set; }
     /// <summary>
-    /// 所属机器
-    /// </summary>
-    public int MachineId { get; private set; }
-    /// <summary>
     /// 内网端口
     /// </summary>
     public int InnerPort { get; private set; }
@@ -52,12 +48,18 @@ public sealed partial class StartProcessConfig :  Bright.Config.BeanBase
     /// 程序名
     /// </summary>
     public string AppName { get; private set; }
+    /// <summary>
+    /// 关联的启动机器表
+    /// </summary>
+    public int StartMachineConfig { get; private set; }
+    public StartMachineConfig StartMachineConfig_Ref { get; private set; }
 
     public const int __ID__ = 2140444015;
     public override int GetTypeId() => __ID__;
 
     public  void Resolve(Dictionary<string, object> _tables)
     {
+        this.StartMachineConfig_Ref = (_tables["StartMachineTable"] as StartMachineTable).GetOrDefault(StartMachineConfig);
         PostResolve();
     }
 
@@ -69,9 +71,9 @@ public sealed partial class StartProcessConfig :  Bright.Config.BeanBase
     {
         return "{ "
         + "Id:" + Id + ","
-        + "MachineId:" + MachineId + ","
         + "InnerPort:" + InnerPort + ","
         + "AppName:" + AppName + ","
+        + "StartMachineConfig:" + StartMachineConfig + ","
         + "}";
     }
 

@@ -1,14 +1,14 @@
 [
   {
     "Id": 1,
-    "MachineId": 1,
     "InnerPort": 20001,
-    "AppName": "Server"
+    "AppName": "Server",
+    "StartMachineConfig": 1
   },
   {
     "Id": 2,
-    "MachineId": 1,
     "InnerPort": 20002,
-    "AppName": "Robot"
+    "AppName": "Robot",
+    "StartMachineConfig": 1
   }
 ]

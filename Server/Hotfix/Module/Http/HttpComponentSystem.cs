@@ -62,7 +62,7 @@ namespace ET
 
             List<Type> types = EventSystem.Instance.GetTypes(typeof (HttpHandlerAttribute));
 
-            SceneType sceneType = self.GetParent<Scene>().SceneType;
+            cfg.Enum.SceneType sceneType = self.GetParent<Scene>().SceneType;
 
             foreach (Type type in types)
             {

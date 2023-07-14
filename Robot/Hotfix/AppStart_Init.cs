@@ -26,10 +26,10 @@ namespace ET
             Game.Scene.AddComponent<RobotCaseComponent>();
             Game.Scene.AddComponent<NumericWatcherComponent>();
             
-            var processScenes = StartSceneConfigCategory.Instance.GetByProcess(Game.Options.Process);
-            foreach (StartSceneConfig startConfig in processScenes)
+            // var processScenes = StartSceneConfigCategory.Instance.GetByProcess(Game.Options.Process);
+            foreach (var startConfig in LuBanComponentSystem.Tables.StartSceneTable.DataList)
             {
-                await RobotSceneFactory.Create(Game.Scene, startConfig.Id, startConfig.InstanceId, startConfig.Zone, startConfig.Name, startConfig.Type, startConfig);
+                await RobotSceneFactory.Create(Game.Scene, startConfig.Id, startConfig.InstanceID, startConfig.StartZoneConfig, startConfig.Name, startConfig.SceneType, startConfig);
             }
             
             if (Game.Options.Console == 1)

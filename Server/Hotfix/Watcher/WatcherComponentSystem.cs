@@ -25,8 +25,8 @@ namespace ET
         public static void Start(this WatcherComponent self, int createScenes = 0)
         {
             string[] localIP = NetworkHelper.GetAddressIPs();
-            var processConfigs = StartProcessConfigCategory.Instance.GetAll();
-            foreach (StartProcessConfig startProcessConfig in processConfigs.Values)
+            // var processConfigs = StartProcessConfigCategory.Instance.GetAll();
+            foreach (var startProcessConfig in LuBanComponentSystem.Tables.StartProcessTable.DataList)
             {
                 if (!WatcherHelper.IsThisMachine(startProcessConfig.InnerIP, localIP))
                 {

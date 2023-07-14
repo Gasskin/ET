@@ -15,7 +15,7 @@ namespace ET
             Game.Scene.AddComponent<ConfigComponent>();
             await ConfigComponent.Instance.LoadAsync();
 
-            StartProcessConfig processConfig = StartProcessConfigCategory.Instance.Get(Game.Options.Process);
+            // StartProcessConfig processConfig = StartProcessConfigCategory.Instance.Get(Game.Options.Process);
 
             Game.Scene.AddComponent<TimerComponent>();
             Game.Scene.AddComponent<OpcodeTypeComponent>();
@@ -36,17 +36,20 @@ namespace ET
             
             Game.Scene.AddComponent<NavmeshComponent, Func<string, byte[]>>(RecastFileReader.Read);
             Game.Scene.AddComponent<LuBanComponent>();
+
+            var processConfig = LuBanComponentSystem.Tables.StartProcessTable.Get(Game.Options.Process);
+            
             switch (Game.Options.AppType)
             {
                 case AppType.Server:
                 {
                     Game.Scene.AddComponent<NetInnerComponent, IPEndPoint, int>(processConfig.InnerIPPort, SessionStreamDispatcherType.SessionStreamDispatcherServerInner);
 
-                    var processScenes = StartSceneConfigCategory.Instance.GetByProcess(Game.Options.Process);
-                    foreach (StartSceneConfig startConfig in processScenes)
+                    // var processScenes = StartSceneConfigCategory.Instance.GetByProcess(Game.Options.Process);
+                    foreach (var startConfig in LuBanComponentSystem.Tables.StartSceneTable.DataList)
                     {
-                        await SceneFactory.Create(Game.Scene, startConfig.Id, startConfig.InstanceId, startConfig.Zone, startConfig.Name,
-                            startConfig.Type, startConfig);
+                        await SceneFactory.Create(Game.Scene, startConfig.Id, startConfig.InstanceID, startConfig.StartZoneConfig, startConfig.Name,
+                            startConfig.SceneType, startConfig);
                     }
 
                     break;
