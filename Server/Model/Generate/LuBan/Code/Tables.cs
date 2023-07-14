@@ -6,17 +6,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using Bright.Serialization;
-using SimpleJSON;
-
+using System.Text.Json;
 
 namespace cfg
 { 
+
    
 public sealed partial class Tables
 {
     public item.TbItem TbItem {get; }
 
-    public Tables(System.Func<string, JSONNode> loader)
+    public Tables(System.Func<string, JsonElement> loader)
     {
         var tables = new System.Collections.Generic.Dictionary<string, object>();
         TbItem = new item.TbItem(loader("item_tbitem")); 

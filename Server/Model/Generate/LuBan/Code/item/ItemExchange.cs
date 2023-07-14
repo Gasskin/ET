@@ -7,19 +7,19 @@
 //------------------------------------------------------------------------------
 using Bright.Serialization;
 using System.Collections.Generic;
-using SimpleJSON;
+using System.Text.Json;
 
 
 
 namespace cfg.item
-{ 
+{
 
 public sealed partial class ItemExchange :  Bright.Config.BeanBase 
 {
-    public ItemExchange(JSONNode _json) 
+    public ItemExchange(JsonElement _json) 
     {
-        { if(!_json["id"].IsNumber) { throw new SerializationException(); }  Id = _json["id"]; }
-        { if(!_json["num"].IsNumber) { throw new SerializationException(); }  Num = _json["num"]; }
+        Id = _json.GetProperty("id").GetInt32();
+        Num = _json.GetProperty("num").GetInt32();
         PostInit();
     }
 
@@ -30,7 +30,7 @@ public sealed partial class ItemExchange :  Bright.Config.BeanBase
         PostInit();
     }
 
-    public static ItemExchange DeserializeItemExchange(JSONNode _json)
+    public static ItemExchange DeserializeItemExchange(JsonElement _json)
     {
         return new item.ItemExchange(_json);
     }
@@ -63,7 +63,7 @@ public sealed partial class ItemExchange :  Bright.Config.BeanBase
         + "Num:" + Num + ","
         + "}";
     }
-    
+
     partial void PostInit();
     partial void PostResolve();
 }

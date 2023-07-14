@@ -7,24 +7,25 @@
 //------------------------------------------------------------------------------
 using Bright.Serialization;
 using System.Collections.Generic;
-using SimpleJSON;
+using System.Text.Json;
 
 
 
 namespace cfg.item
-{ 
+{
+
 
 public sealed partial class TbItem
 {
     private readonly Dictionary<int, item.Item> _dataMap;
     private readonly List<item.Item> _dataList;
     
-    public TbItem(JSONNode _json)
+    public TbItem(JsonElement _json)
     {
         _dataMap = new Dictionary<int, item.Item>();
         _dataList = new List<item.Item>();
         
-        foreach(JSONNode _row in _json.Children)
+        foreach(JsonElement _row in _json.EnumerateArray())
         {
             var _v = item.Item.DeserializeItem(_row);
             _dataList.Add(_v);
@@ -57,7 +58,7 @@ public sealed partial class TbItem
         }
     }
     
-    
+
     partial void PostInit();
     partial void PostResolve();
 }

@@ -7,25 +7,25 @@
 //------------------------------------------------------------------------------
 using Bright.Serialization;
 using System.Collections.Generic;
-using SimpleJSON;
+using System.Text.Json;
 
 
 
 namespace cfg.item
-{ 
+{
 
 public sealed partial class Item :  Bright.Config.BeanBase 
 {
-    public Item(JSONNode _json) 
+    public Item(JsonElement _json) 
     {
-        { if(!_json["id"].IsNumber) { throw new SerializationException(); }  Id = _json["id"]; }
-        { if(!_json["name"].IsString) { throw new SerializationException(); }  Name = _json["name"]; }
-        { if(!_json["price"].IsNumber) { throw new SerializationException(); }  Price = _json["price"]; }
-        { if(!_json["upgrade_to_item_id"].IsNumber) { throw new SerializationException(); }  UpgradeToItemId = _json["upgrade_to_item_id"]; }
-        { var _j = _json["expire_time"]; if (_j.Tag != JSONNodeType.None && _j.Tag != JSONNodeType.NullValue) { { if(!_j.IsNumber) { throw new SerializationException(); }  ExpireTime = _j; } } else { ExpireTime = null; } }
-        { if(!_json["quality"].IsNumber) { throw new SerializationException(); }  Quality = (item.EQuality)_json["quality"].AsInt; }
-        { var __json0 = _json["exchange_list"]; if(!__json0.IsArray) { throw new SerializationException(); } ExchangeList = new System.Collections.Generic.List<item.ItemExchange>(__json0.Count); foreach(JSONNode __e0 in __json0.Children) { item.ItemExchange __v0;  { if(!__e0.IsObject) { throw new SerializationException(); }  __v0 = item.ItemExchange.DeserializeItemExchange(__e0);  }  ExchangeList.Add(__v0); }   }
-        { if(!_json["exchange_column"].IsObject) { throw new SerializationException(); }  ExchangeColumn = item.ItemExchange.DeserializeItemExchange(_json["exchange_column"]);  }
+        Id = _json.GetProperty("id").GetInt32();
+        Name = _json.GetProperty("name").GetString();
+        Price = _json.GetProperty("price").GetInt32();
+        UpgradeToItemId = _json.GetProperty("upgrade_to_item_id").GetInt32();
+        { if (_json.TryGetProperty("expire_time", out var _j) && _j.ValueKind != JsonValueKind.Null) { ExpireTime = _j.GetInt64(); } else { ExpireTime = null; } }
+        Quality = (item.EQuality)_json.GetProperty("quality").GetInt32();
+        { var __json0 = _json.GetProperty("exchange_list"); ExchangeList = new System.Collections.Generic.List<item.ItemExchange>(__json0.GetArrayLength()); foreach(JsonElement __e0 in __json0.EnumerateArray()) { item.ItemExchange __v0;  __v0 = item.ItemExchange.DeserializeItemExchange(__e0);  ExchangeList.Add(__v0); }   }
+        ExchangeColumn = item.ItemExchange.DeserializeItemExchange(_json.GetProperty("exchange_column"));
         PostInit();
     }
 
@@ -42,7 +42,7 @@ public sealed partial class Item :  Bright.Config.BeanBase
         PostInit();
     }
 
-    public static Item DeserializeItem(JSONNode _json)
+    public static Item DeserializeItem(JsonElement _json)
     {
         return new item.Item(_json);
     }
@@ -108,7 +108,7 @@ public sealed partial class Item :  Bright.Config.BeanBase
         + "ExchangeColumn:" + ExchangeColumn + ","
         + "}";
     }
-    
+
     partial void PostInit();
     partial void PostResolve();
 }

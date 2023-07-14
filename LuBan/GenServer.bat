@@ -7,6 +7,6 @@ set SERVER_DATA=..\Server\Model\Generate\LuBan\Data
  --input_data_dir Datas ^
  --output_data_dir %SERVER_DATA% ^
  --output_code_dir %SERVER_CODE% ^
- --gen_types code_cs_unity_json,data_json ^
+ --gen_types code_cs_dotnet_json,data_json ^
  -s server
 pause
