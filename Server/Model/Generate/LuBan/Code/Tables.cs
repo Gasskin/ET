@@ -18,6 +18,7 @@ public sealed partial class Tables
     public StartMachineTable StartMachineTable {get; }
     public StartProcessTable StartProcessTable {get; }
     public StartZoneTable StartZoneTable {get; }
+    public StartSceneTable StartSceneTable {get; }
 
     public Tables(System.Func<string, JsonElement> loader)
     {
@@ -30,12 +31,15 @@ public sealed partial class Tables
         tables.Add("StartProcessTable", StartProcessTable);
         StartZoneTable = new StartZoneTable(loader("startzonetable")); 
         tables.Add("StartZoneTable", StartZoneTable);
+        StartSceneTable = new StartSceneTable(loader("startscenetable")); 
+        tables.Add("StartSceneTable", StartSceneTable);
         PostInit();
 
         AITable.Resolve(tables); 
         StartMachineTable.Resolve(tables); 
         StartProcessTable.Resolve(tables); 
         StartZoneTable.Resolve(tables); 
+        StartSceneTable.Resolve(tables); 
         PostResolve();
     }
 
@@ -45,6 +49,7 @@ public sealed partial class Tables
         StartMachineTable.TranslateText(translator); 
         StartProcessTable.TranslateText(translator); 
         StartZoneTable.TranslateText(translator); 
+        StartSceneTable.TranslateText(translator); 
     }
     
     partial void PostInit();
