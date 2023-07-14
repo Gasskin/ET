@@ -30,6 +30,10 @@
       <Link>Demo\Unit\UnitType.cs</Link>
     </Compile>
 
+    <Compile Include="..\..\Unity\Codes\Model\Module\LuBan\LuBanComponent.cs">
+      <Link>Module\LuBan\LuBanComponent.cs</Link>
+    </Compile>
+
     <Compile Include="..\..\Unity\Codes\Model\Module\Recast\**\*.cs">
       <Link>Module\Recast\%(RecursiveDir)%(FileName)%(Extension)</Link>
     </Compile>

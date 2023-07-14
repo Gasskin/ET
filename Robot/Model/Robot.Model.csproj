@@ -66,6 +66,10 @@
             <Link>Module\MessageInner\%(RecursiveDir)%(FileName)%(Extension)</Link>
         </Compile>
 
+        <Compile Include="..\..\Unity\Codes\Model\Module\LuBan\LuBanComponent.cs">
+          <Link>Module\LuBan\LuBanComponent.cs</Link>
+        </Compile>
+
         <Compile Include="..\..\Unity\Codes\Model\Module\Ping\**\*.cs">
             <Link>Module\Ping\%(RecursiveDir)%(FileName)%(Extension)</Link>
         </Compile>
