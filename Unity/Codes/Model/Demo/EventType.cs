@@ -7,7 +7,12 @@ namespace ET
         public struct AppStart
         {
         }
-        
+
+        public struct TestEvent
+        {
+            public string name;
+            public int age;
+        }
 
         public struct SceneChangeStart
         {
@@ -25,7 +30,7 @@ namespace ET
             public static readonly ChangePosition Instance = new ChangePosition();
             
             public Unit Unit;
-            public WrapVector3 OldPos = new WrapVector3();
+            public WrapVector3 OldPos = new WrapVector3(); 
 
             // 因为是重复利用的，所以用完PublishClass会调用Dispose
             public override void Dispose()

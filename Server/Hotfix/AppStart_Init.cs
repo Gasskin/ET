@@ -39,7 +39,7 @@ namespace ET
 
             var tbs = LuBanComponent.Instance.GetAllTable();
             var processConfig = tbs.StartProcessTable.Get(Game.Options.Process);
-            
+            await Game.EventSystem.PublishAsync(new EventType.TestEvent() { name = "xccc", age = 25 });
             switch (Game.Options.AppType)
             {
                 case AppType.Server:

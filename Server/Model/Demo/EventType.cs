@@ -7,6 +7,12 @@ namespace ET
 		public struct AppStart
 		{
 		}
+
+		public struct TestEvent
+		{
+			public string name;
+			public int age;
+		}
 		
 		public class ChangePosition: DisposeObject
 		{
