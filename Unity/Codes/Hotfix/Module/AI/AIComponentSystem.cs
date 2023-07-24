@@ -54,7 +54,8 @@ namespace ET
                 return;
             }
 
-            var oneAI = LuBanComponentSystem.Tables.AITable.DataList.Where((config) => config.AIConfigId == self.AIConfigId);
+            var tbs = LuBanComponent.Instance.GetAllTable();
+            var oneAI = tbs.AITable.DataList.Where((config) => config.AIConfigId == self.AIConfigId);
             
             // var oneAI = AIConfigCategory.Instance.AIConfigs[self.AIConfigId];
 

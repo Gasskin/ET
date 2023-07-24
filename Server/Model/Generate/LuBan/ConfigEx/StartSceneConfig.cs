@@ -5,6 +5,7 @@ namespace cfg
 {
     public partial class StartSceneConfig
     {
+        // 唯一ID
         private long instanceID;
         public long InstanceID
         {

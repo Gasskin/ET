@@ -37,7 +37,8 @@ namespace ET
             Game.Scene.AddComponent<NavmeshComponent, Func<string, byte[]>>(RecastFileReader.Read);
             Game.Scene.AddComponent<LuBanComponent>();
 
-            var processConfig = LuBanComponentSystem.Tables.StartProcessTable.Get(Game.Options.Process);
+            var tbs = LuBanComponent.Instance.GetAllTable();
+            var processConfig = tbs.StartProcessTable.Get(Game.Options.Process);
             
             switch (Game.Options.AppType)
             {
@@ -46,7 +47,7 @@ namespace ET
                     Game.Scene.AddComponent<NetInnerComponent, IPEndPoint, int>(processConfig.InnerIPPort, SessionStreamDispatcherType.SessionStreamDispatcherServerInner);
 
                     // var processScenes = StartSceneConfigCategory.Instance.GetByProcess(Game.Options.Process);
-                    foreach (var startConfig in LuBanComponentSystem.Tables.StartSceneTable.DataList)
+                    foreach (var startConfig in tbs.StartSceneTable.DataList)
                     {
                         await SceneFactory.Create(Game.Scene, startConfig.Id, startConfig.InstanceID, startConfig.StartZoneConfig, startConfig.Name,
                             startConfig.SceneType, startConfig);

@@ -26,7 +26,8 @@ namespace ET
         {
             string[] localIP = NetworkHelper.GetAddressIPs();
             // var processConfigs = StartProcessConfigCategory.Instance.GetAll();
-            foreach (var startProcessConfig in LuBanComponentSystem.Tables.StartProcessTable.DataList)
+            var tbs = LuBanComponent.Instance.GetAllTable();
+            foreach (var startProcessConfig in tbs.StartProcessTable.DataList)
             {
                 if (!WatcherHelper.IsThisMachine(startProcessConfig.InnerIP, localIP))
                 {

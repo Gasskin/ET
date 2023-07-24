@@ -116,7 +116,8 @@ namespace ET
             if (session == null)
             {
                 // IPEndPoint ipEndPoint = StartProcessConfigCategory.Instance.Get((int) channelId).InnerIPPort;
-                var ipEndPoint = LuBanComponentSystem.Tables.StartProcessTable.Get((int)channelId).InnerIPPort;
+                var tbs = LuBanComponent.Instance.GetAllTable();
+                var ipEndPoint = tbs.StartProcessTable.Get((int)channelId).InnerIPPort;
                 session = self.CreateInner(channelId, ipEndPoint);
             }
 

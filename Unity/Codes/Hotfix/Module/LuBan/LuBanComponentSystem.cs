@@ -29,6 +29,9 @@ namespace ET
             }
         }
 
-        public static Tables Tables => LuBanComponent.Instance.tables;
+        public static Tables GetAllTable(this LuBanComponent self)
+        {
+            return self.tables;
+        }
     }
 }

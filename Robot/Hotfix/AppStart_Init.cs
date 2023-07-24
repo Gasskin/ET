@@ -27,7 +27,8 @@ namespace ET
             Game.Scene.AddComponent<NumericWatcherComponent>();
             
             // var processScenes = StartSceneConfigCategory.Instance.GetByProcess(Game.Options.Process);
-            foreach (var startConfig in LuBanComponentSystem.Tables.StartSceneTable.DataList)
+            var tbs = LuBanComponent.Instance.GetAllTable();
+            foreach (var startConfig in tbs.StartSceneTable.DataList)
             {
                 await RobotSceneFactory.Create(Game.Scene, startConfig.Id, startConfig.InstanceID, startConfig.StartZoneConfig, startConfig.Name, startConfig.SceneType, startConfig);
             }

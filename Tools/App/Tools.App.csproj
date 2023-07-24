@@ -30,6 +30,9 @@
     </PropertyGroup>
     
     <ItemGroup>
+        <Compile Include="..\..\Server\Model\Generate\LuBan\Code\Enum\SceneType.cs">
+          <Link>Core\Entity\SceneType.cs</Link>
+        </Compile>
         <Compile Include="..\..\Unity\Codes\Model\Core\**\*.cs">
             <Link>Core\%(RecursiveDir)%(FileName)%(Extension)</Link>
         </Compile>
