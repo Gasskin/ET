@@ -65,3 +65,8 @@ Unity/Unity.Hotfix.csproj
 Unity/Unity.HotfixView.csproj
 Unity/Unity.Model.csproj
 Unity/Unity.ModelView.csproj
+Unity/Packages/packages-lock.json
+Unity/Assembly-CSharp-firstpass.csproj
+Unity/UserSettings/Search.settings
+Unity/ProjectSettings/PackageManagerSettings.asset
+Unity/ProjectSettings/ProjectVersion.txt
