@@ -154,3 +154,9 @@ message G2M_SessionDisconnect // IActorLocationMessage
 {
 	int32 RpcId = 90;
 }
+
+message C2M_Test
+{
+	int32 RpcId = 90,
+	string test = 1
+}
