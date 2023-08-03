@@ -325,4 +325,16 @@ namespace ET
 
 	}
 
+	[Message(InnerOpcode.C2M_Test)]
+	[ProtoContract]
+	public partial class C2M_Test: Object
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public string test { get; set; }
+
+	}
+
 }

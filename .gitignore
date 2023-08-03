@@ -70,3 +70,6 @@ Unity/Assembly-CSharp-firstpass.csproj
 Unity/UserSettings/Search.settings
 Unity/ProjectSettings/PackageManagerSettings.asset
 Unity/ProjectSettings/ProjectVersion.txt
+Unity/Packages
+Unity/ProjectSettings
+Unity/UserSettings
