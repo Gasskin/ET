@@ -493,4 +493,59 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(R2C_LoginTest))]
+	[Message(OuterOpcode.C2R_LoginTest)]
+	[ProtoContract]
+	public partial class C2R_LoginTest: Object, IRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public string Account { get; set; }
+
+		[ProtoMember(2)]
+		public string Password { get; set; }
+
+	}
+
+	[Message(OuterOpcode.R2C_LoginTest)]
+	[ProtoContract]
+	public partial class R2C_LoginTest: Object, IResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public string GateAddress { get; set; }
+
+		[ProtoMember(2)]
+		public string Key { get; set; }
+
+	}
+
+	[Message(OuterOpcode.C2R_SayHello)]
+	[ProtoContract]
+	public partial class C2R_SayHello: Object, IMessage
+	{
+		[ProtoMember(1)]
+		public string Hello { get; set; }
+
+	}
+
+	[Message(OuterOpcode.R2C_SayGoodbye)]
+	[ProtoContract]
+	public partial class R2C_SayGoodbye: Object, IMessage
+	{
+		[ProtoMember(1)]
+		public string Goodbye { get; set; }
+
+	}
+
 }
