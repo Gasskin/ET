@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace ET.UIFlow
 {
+    [UIBase]
     public abstract class UIBase
     {
     #region 字段
@@ -67,7 +68,7 @@ namespace ET.UIFlow
         {
             OnUnload();
             subUI.Clear();
-            Object.Destroy(prefabInstance);
+            UnityEngine.Object.Destroy(prefabInstance);
             prefabInstance = null;
             canvasGroup = null;
         }

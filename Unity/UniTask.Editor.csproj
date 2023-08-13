@@ -41,11 +41,11 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\ThirdParty\UniTask\Editor\SplitterGUILayout.cs" />
-     <Compile Include="Assets\ThirdParty\UniTask\Editor\UniTaskTrackerTreeView.cs" />
-     <Compile Include="Assets\ThirdParty\UniTask\Editor\UniTaskTrackerWindow.cs" />
-     <None Include="Assets\ThirdParty\UniTask\Editor\UniTask.Editor.asmdef" />
-     <Folder Include="Assets\ThirdParty\UniTask\Editor" />
+     <Compile Include="Assets\Editor\UniTask\Editor\UniTaskTrackerWindow.cs" />
+     <Compile Include="Assets\Editor\UniTask\Editor\SplitterGUILayout.cs" />
+     <Compile Include="Assets\Editor\UniTask\Editor\UniTaskTrackerTreeView.cs" />
+     <None Include="Assets\Editor\UniTask\Editor\UniTask.Editor.asmdef" />
+     <Folder Include="Assets\Editor\UniTask\Editor" />
      <Reference Include="UnityEngine">
      <HintPath>C:\Program Files\Unity\Hub\Editor\Unity 2021.3.28f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
      </Reference>
@@ -723,10 +723,6 @@
      </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="UniTask.csproj">
-      <Project>{bab5d22a-8583-2c7d-88ed-c468ec0e7027}</Project>
-      <Name>UniTask</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

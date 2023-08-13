@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ET
 {
-    [UIEvent(UIType.UILobby)]
+    [UIBase(UIType.UILobby)]
     public class UILobbyEvent: AUIEvent
     {
         public override async ETTask<UI> OnCreate(UIComponent uiComponent, UILayer uiLayer)

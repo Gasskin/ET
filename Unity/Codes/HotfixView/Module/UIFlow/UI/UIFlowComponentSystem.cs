@@ -32,11 +32,12 @@ namespace ET.UIFlow
 
                 self.uiRoot = UnityEngine.Object.Instantiate(uiRootAsset);
                 self.uiRoot.name = "UIRoot";
+                var uiCamera = self.uiRoot.GetComponentInChildren<Camera>();
+                
                 UnityEngine.Object.DontDestroyOnLoad(self.uiRoot);
 
                 self.uiLayer = new Dictionary<UIType, Transform>();
                 self.uiLogics = new Dictionary<string, UIBase>();
-                self.uiPrefabAssets = new Dictionary<string, GameObject>();
                 self.uiWaitForUnLoad = new Dictionary<string, UIBase>();
                 self.uiUnLoadCountDown = new Dictionary<string, float>();
                 self.removeHelper = new List<string>();
@@ -51,6 +52,7 @@ namespace ET.UIFlow
                 }
 
                 self.isInit = true;
+                UIFlowComponent.Instance = self;
             }
         }
 
@@ -97,6 +99,8 @@ namespace ET.UIFlow
         {
             public override void Destroy(UIFlowComponent self)
             {
+                self.isInit = false;
+                UIFlowComponent.Instance = null;
             }
         }
 
@@ -175,7 +179,7 @@ namespace ET.UIFlow
                 return;
 
             var instance = UnityEngine.Object.Instantiate(asset, layer);
-            if (!uiLogic.BindComponent(instance))
+            if (!uiLogic.BindComponent((GameObject)instance))
             {
                 Log.Error($"{uiName} BindComponent Error!");
                 UnityEngine.Object.DestroyImmediate(instance);

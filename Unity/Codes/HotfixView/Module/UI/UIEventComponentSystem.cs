@@ -19,18 +19,18 @@ namespace ET
 			self.UILayers.Add((int)UILayer.Mid, referenceCollector.Get<GameObject>(UILayer.Mid.ToString()).transform);
 			self.UILayers.Add((int)UILayer.High, referenceCollector.Get<GameObject>(UILayer.High.ToString()).transform);
 
-			var uiEvents = Game.EventSystem.GetTypes(typeof (UIEventAttribute));
+			var uiEvents = Game.EventSystem.GetTypes(typeof (UIBaseAttribute));
 			foreach (Type type in uiEvents)
 			{
-				object[] attrs = type.GetCustomAttributes(typeof(UIEventAttribute), false);
+				object[] attrs = type.GetCustomAttributes(typeof(UIBaseAttribute), false);
 				if (attrs.Length == 0)
 				{
 					continue;
 				}
 
-				UIEventAttribute uiEventAttribute = attrs[0] as UIEventAttribute;
+				UIBaseAttribute uiBaseAttribute = attrs[0] as UIBaseAttribute;
 				AUIEvent aUIEvent = Activator.CreateInstance(type) as AUIEvent;
-				self.UIEvents.Add(uiEventAttribute.UIType, aUIEvent);
+				self.UIEvents.Add(uiBaseAttribute.UIType, aUIEvent);
 			}
 		}
 	}

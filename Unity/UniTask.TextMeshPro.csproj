@@ -41,8 +41,8 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\ThirdParty\UniTask\Runtime\External\TextMeshPro\TextMeshProAsyncExtensions.InputField.cs" />
      <Compile Include="Assets\ThirdParty\UniTask\Runtime\External\TextMeshPro\TextMeshProAsyncExtensions.cs" />
+     <Compile Include="Assets\ThirdParty\UniTask\Runtime\External\TextMeshPro\TextMeshProAsyncExtensions.InputField.cs" />
      <Folder Include="Assets\ThirdParty\UniTask\Runtime\External\TextMeshPro" />
      <None Include="Assets\ThirdParty\UniTask\Runtime\External\TextMeshPro\UniTask.TextMeshPro.asmdef" />
      <Reference Include="UnityEngine">
@@ -704,10 +704,6 @@
      </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="UniTask.csproj">
-      <Project>{bab5d22a-8583-2c7d-88ed-c468ec0e7027}</Project>
-      <Name>UniTask</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

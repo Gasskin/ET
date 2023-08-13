@@ -2,11 +2,11 @@ using System;
 
 namespace ET
 {
-    public class UIEventAttribute: BaseAttribute
+    public class UIBaseAttribute: BaseAttribute
     {
         public string UIType { get; }
 
-        public UIEventAttribute(string uiType)
+        public UIBaseAttribute(string uiType)
         {
             this.UIType = uiType;
         }

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ET
 {
-	[UIEvent(UIType.UILoading)]
+	[UIBase(UIType.UILoading)]
     public class UILoadingEvent: AUIEvent
     {
         public override async ETTask<UI> OnCreate(UIComponent uiComponent, UILayer uiLayer)
