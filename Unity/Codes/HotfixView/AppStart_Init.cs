@@ -1,5 +1,3 @@
-using ET.UIFlow;
-
 namespace ET
 {
     public class AppStart_Init: AEvent<EventType.AppStart>
@@ -34,7 +32,6 @@ namespace ET
 
             Game.Scene.AddComponent<LuBanComponent>();
             Game.Scene.AddComponent<AssetComponent>();
-            Game.Scene.AddComponent<UIFlowComponent>();
             await ResourcesComponent.Instance.LoadBundleAsync("unit.unity3d");
             
             Scene zoneScene = SceneFactory.CreateZoneScene(1, "Game", Game.Scene);
