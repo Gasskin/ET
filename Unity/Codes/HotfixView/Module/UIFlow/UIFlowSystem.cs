@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 namespace ET
 {
@@ -18,6 +19,8 @@ namespace ET
 
                 self.WindowListCached ??= new();
                 self.WindowListCached?.Clear();
+
+                UIFlowComponent.Instance = self;
             }
         }
 
@@ -25,6 +28,7 @@ namespace ET
         {
             public override void Destroy(UIFlowComponent self)
             {
+                UIFlowComponent.Instance = null;
             }
         }
     #endregion
@@ -76,7 +80,10 @@ namespace ET
                 Log.Error($"不存在Prefab路径：{wnd.WindowID}");
                 return;
             }
-            
+            var asset = await AssetComponent.Instance.GetAsset(path);
+            var go = UnityEngine.Object.Instantiate(asset) as GameObject;
+            wnd.Prefab = go;
+            UIFlowEventComponent.Instance.GetUIFlowEventHandler(wnd.WindowID).OnLoad();
             await ETTask.CompletedTask;
         }
     #endregion

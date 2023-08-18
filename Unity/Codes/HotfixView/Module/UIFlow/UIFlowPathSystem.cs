@@ -8,7 +8,9 @@
         {
             public override void Awake(UIFlowPathComponent self)
             {
-                self.PrefabPath.Add(WindowID.LoginNew, "Login/LoginNew.prefab");
+                self.PrefabPath.Add(WindowID.LoginNew, "Login/UILoginNew");
+
+                UIFlowPathComponent.Instance = self;
             }
         }
         

@@ -38,8 +38,7 @@ namespace ET
             try
             {
                 coroutineLock = await CoroutineLockComponent.Instance.Wait(CoroutineLockType.Resources, path.GetHashCode());
-                
-                return null;
+                return await self.LoadAsset(path);
             }
             catch (Exception e)
             {
@@ -60,7 +59,11 @@ namespace ET
                 return asset;
             var tcs = ETTask<UnityEngine.Object>.Create(true);
             var request = Resources.LoadAsync(path);
-            request.completed += operation => { tcs.SetResult(request.asset);};
+            request.completed += _ =>
+            {
+                self.assetCache[path] = request.asset;
+                tcs.SetResult(request.asset);
+            };
             return await tcs;
         }
     #endregion
