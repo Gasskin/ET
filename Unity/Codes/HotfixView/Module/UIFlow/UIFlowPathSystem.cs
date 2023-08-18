@@ -1,30 +1,35 @@
 ﻿namespace ET
 {
-    [FriendClass(typeof(UIPathComponent))]
+    [FriendClass(typeof(UIFlowPathComponent))]
     public static class UIPathSystem
     {
         [ObjectSystem]
-        public class OnAwake: AwakeSystem<UIPathComponent>
+        public class OnAwake: AwakeSystem<UIFlowPathComponent>
         {
-            public override void Awake(UIPathComponent self)
+            public override void Awake(UIFlowPathComponent self)
             {
                 self.PrefabPath.Add(WindowID.LoginNew, "Login/LoginNew.prefab");
             }
         }
         
         [ObjectSystem]
-        public class OnDestroy: DestroySystem<UIPathComponent>
+        public class OnDestroy: DestroySystem<UIFlowPathComponent>
         {
-            public override void Destroy(UIPathComponent self)
+            public override void Destroy(UIFlowPathComponent self)
             {
                 self.PrefabPath.Clear();
-                UIPathComponent.Instance = null;
+                UIFlowPathComponent.Instance = null;
             }
         }
 
-        public static string GetWindowPrefabPath(this UIPathComponent self, WindowID windowID)
+        public static string GetWindowPrefabPath(this UIFlowPathComponent self, WindowID id)
         {
-            return self.PrefabPath[windowID];
+            if (self.PrefabPath.TryGetValue(id,out var path))
+            {
+                return path;
+            }
+
+            return null;
         }
     }
 }

@@ -3,6 +3,7 @@
 namespace ET
 {
     [ComponentOf(typeof (Scene))]
+    [ChildType(typeof(UIFlowWindowComponent))]
     public class UIFlowComponent: Entity, IAwake, IDestroy
     {
         public Dictionary<WindowID, UIFlowWindowComponent> AllWindowsDic { get; set; } = new();
