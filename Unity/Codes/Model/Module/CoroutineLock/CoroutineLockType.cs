@@ -10,6 +10,7 @@ namespace ET
         public const int DB = 5;
         public const int Resources = 6;
         public const int ResourcesLoader = 7;
+        public const int LoginAccount = 8;
         public const int OpenWindow = 8; // 打开UI
         public const int Max = 100; // 这个必须最大
     }

@@ -69,7 +69,7 @@ namespace ET
                     wnd = self.AddChild<UIFlowWindowComponent>();
                     wnd.WindowID = id;
                     self.AllWindowsDic[id] = wnd;
-                    await self.LoadAsset(wnd);
+                    await self.PrepareAsset(wnd);
                 }
 
                 if (wnd.Prefab == null)
@@ -79,8 +79,8 @@ namespace ET
                     return;
                 }
 
-                wnd.Prefab.SetActive(true);
-                UIFlowEventComponent.Instance.GetUIFlowEventHandler(id).OnShow(wnd);
+                wnd.CanvasGroup.alpha = 1;
+                UIFlowEventComponent.Instance.GetUIFlowEventHandler(id).OnShow(showData);
                 self.VisibleWindowsDic[id] = wnd;
             }
             catch (Exception e)
@@ -95,7 +95,11 @@ namespace ET
 
         public static void CloseWindow(this UIFlowComponent self, WindowID id)
         {
-            
+            if (!self.VisibleWindowsDic.TryGetValue(id,out var wnd))
+                return;
+            UIFlowEventComponent.Instance.GetUIFlowEventHandler(id).OnHide();
+            wnd.CanvasGroup.alpha = 0;
+            self.VisibleWindowsDic.Remove(id);
         }
     #endregion
 
@@ -107,7 +111,7 @@ namespace ET
             return null;
         }
 
-        private static async ETTask LoadAsset(this UIFlowComponent self, UIFlowWindowComponent wnd)
+        private static async ETTask PrepareAsset(this UIFlowComponent self, UIFlowWindowComponent wnd)
         {
             var path = UIFlowConfigComponent.Instance.GetWindowPrefabPath(wnd.WindowID);
             var layer = UIFlowConfigComponent.Instance.GetWindowLayer(wnd.WindowID);
@@ -127,6 +131,9 @@ namespace ET
             var go = UnityEngine.Object.Instantiate(asset, self.LayerDic[layer], false) as GameObject;
             wnd.Prefab = go;
             wnd.Rect = go.GetComponent<RectTransform>();
+            if (!go.TryGetComponent(out CanvasGroup group))
+                group = go.AddComponent<CanvasGroup>();
+            wnd.CanvasGroup = group;
             UIFlowEventComponent.Instance.GetUIFlowEventHandler(wnd.WindowID).OnLoad(wnd);
             await ETTask.CompletedTask;
         }

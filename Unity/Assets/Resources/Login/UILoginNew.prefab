@@ -870,6 +870,12 @@ MonoBehaviour:
   - fieldName: LoginBtn
     componentType: Button
     target: {fileID: 9142671546232768168}
+  - fieldName: Account
+    componentType: InputField
+    target: {fileID: 159327812143189154}
+  - fieldName: Password
+    componentType: InputField
+    target: {fileID: 1110814762981541752}
 --- !u!1 &8274688129825040848
 GameObject:
   m_ObjectHideFlags: 0

@@ -37,6 +37,8 @@ namespace ET
             Game.Scene.AddComponent<NavmeshComponent, Func<string, byte[]>>(RecastFileReader.Read);
             Game.Scene.AddComponent<LuBanComponent>();
 
+            Game.Scene.AddComponent<DBManagerComponent>();
+            
             var tbs = LuBanComponent.Instance.GetAllTable();
             var processConfig = tbs.StartProcessTable.Get(Game.Options.Process);
             await Game.EventSystem.PublishAsync(new EventType.TestEvent() { name = "xccc", age = 25 });

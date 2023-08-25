@@ -18,6 +18,7 @@ namespace cfg.Enum
         Http = 4,
         Location = 5,
         Map = 6,
+        Account = 7,
         Client = 30,
         Zone = 31,
         Login = 32,

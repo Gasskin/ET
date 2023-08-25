@@ -10,6 +10,12 @@ namespace ET
         public void OnLoad(UIFlowWindowComponent wnd)
         {
             this.View = new UILoginNewView(wnd.Prefab);
+            this.View.LoginBtn.onClick.AddListener((() =>
+            {
+                var account = this.View.Account.text;
+                var password = this.View.Password.text;
+                Log.Error($"{account}:{password}");
+            }));
         }
 
         public void OnShow(Object data)

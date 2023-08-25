@@ -46,5 +46,13 @@
     "SceneType": 6,
     "Name": "Map2",
     "OuterPort": 0
+  },
+  {
+    "Id": 7,
+    "StartProcessConfig": 1,
+    "StartZoneConfig": 1,
+    "SceneType": 7,
+    "Name": "Account",
+    "OuterPort": 10005
   }
 ]
