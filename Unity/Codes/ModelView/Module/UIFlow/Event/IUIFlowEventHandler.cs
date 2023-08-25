@@ -2,8 +2,8 @@
 {
     public interface IUIFlowEventHandler
     {
-        void OnLoad();
-        void OnShow();
+        void OnLoad(UIFlowWindowComponent wnd);
+        void OnShow(Object data);
         void OnHide();
         void OnUnLoad();
     }

@@ -1,4 +1,5 @@
 ﻿using System;
+using ET.UIFlow;
 using UnityEngine;
 
 namespace ET
@@ -11,14 +12,31 @@ namespace ET
         {
             public override void Awake(UIFlowComponent self)
             {
-                self.AllWindowsDic ??= new();
-                self.AllWindowsDic?.Clear();
+                var root = GameObject.FindWithTag("UIRoot").transform;
+                if (root == null)
+                {
+                    Log.Error("找不到UIRoot");
+                    return;
+                }
 
-                self.VisibleWindowsDic ??= new();
-                self.AllWindowsDic?.Clear();
+                foreach (var layerName in Enum.GetNames(typeof (WindowLayer)))
+                {
+                    if (layerName == "None")
+                        continue;
+                    var layer = root.Find(layerName);
+                    if (layer == null)
+                    {
+                        Log.Error($"找不到Layer: {layerName}");
+                        self.LayerDic.Clear();
+                        return;
+                    }
 
-                self.WindowListCached ??= new();
-                self.WindowListCached?.Clear();
+                    var type = Enum.Parse<WindowLayer>(layerName);
+                    self.LayerDic[type] = layer;
+                }
+
+                self.UIRoot = root;
+                UnityEngine.Object.DontDestroyOnLoad(self.UIRoot);
 
                 UIFlowComponent.Instance = self;
             }
@@ -50,8 +68,20 @@ namespace ET
                 {
                     wnd = self.AddChild<UIFlowWindowComponent>();
                     wnd.WindowID = id;
+                    self.AllWindowsDic[id] = wnd;
                     await self.LoadAsset(wnd);
                 }
+
+                if (wnd.Prefab == null)
+                {
+                    wnd.Dispose();
+                    self.AllWindowsDic.Remove(id);
+                    return;
+                }
+
+                wnd.Prefab.SetActive(true);
+                UIFlowEventComponent.Instance.GetUIFlowEventHandler(id).OnShow(wnd);
+                self.VisibleWindowsDic[id] = wnd;
             }
             catch (Exception e)
             {
@@ -61,6 +91,11 @@ namespace ET
             {
                 coroutineLock?.Dispose();
             }
+        }
+
+        public static void CloseWindow(this UIFlowComponent self, WindowID id)
+        {
+            
         }
     #endregion
 
@@ -74,16 +109,25 @@ namespace ET
 
         private static async ETTask LoadAsset(this UIFlowComponent self, UIFlowWindowComponent wnd)
         {
-            var path = UIFlowPathComponent.Instance.GetWindowPrefabPath(wnd.WindowID);
+            var path = UIFlowConfigComponent.Instance.GetWindowPrefabPath(wnd.WindowID);
+            var layer = UIFlowConfigComponent.Instance.GetWindowLayer(wnd.WindowID);
             if (string.IsNullOrEmpty(path))
             {
                 Log.Error($"不存在Prefab路径：{wnd.WindowID}");
                 return;
             }
+
+            if (layer == WindowLayer.None)
+            {
+                Log.Error($"WindowLayer配置错误：{wnd.WindowID}");
+                return;
+            }
+
             var asset = await AssetComponent.Instance.GetAsset(path);
-            var go = UnityEngine.Object.Instantiate(asset) as GameObject;
+            var go = UnityEngine.Object.Instantiate(asset, self.LayerDic[layer], false) as GameObject;
             wnd.Prefab = go;
-            UIFlowEventComponent.Instance.GetUIFlowEventHandler(wnd.WindowID).OnLoad();
+            wnd.Rect = go.GetComponent<RectTransform>();
+            UIFlowEventComponent.Instance.GetUIFlowEventHandler(wnd.WindowID).OnLoad(wnd);
             await ETTask.CompletedTask;
         }
     #endregion

@@ -1,14 +1,18 @@
-﻿namespace ET
+﻿using ET.UIFlow;
+
+namespace ET
 {
     [UIFlowEvent(WindowID.LoginNew)]
     public class UILoginNewEventHandler: IUIFlowEventHandler
     {
-        public void OnLoad()
+        private UILoginNewView View { get; set; }
+        
+        public void OnLoad(UIFlowWindowComponent wnd)
         {
-            Log.Error("OnLoad Window");
+            this.View = new UILoginNewView(wnd.Prefab);
         }
 
-        public void OnShow()
+        public void OnShow(Object data)
         {
         }
 
@@ -18,6 +22,7 @@
 
         public void OnUnLoad()
         {
+            this.View.LoginBtn.onClick.RemoveAllListeners();
         }
     }
 }

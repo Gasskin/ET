@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using Component = System.ComponentModel.Component;
 
 namespace ET.UIFlow
 {
@@ -8,8 +7,8 @@ namespace ET.UIFlow
         public string uiName;
 
         public UIComponentData[] uiData;
-
-        public T GetComponent<T>(int index) where T : Component
+        
+        public T GetBindComponent<T>(int index) where T : Component
         {
             if (index >= uiData.Length) 
             {

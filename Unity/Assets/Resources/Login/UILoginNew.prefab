@@ -849,9 +849,9 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 960, y: 540}
-  m_SizeDelta: {x: 1920, y: 1080}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3853901346677742473
 MonoBehaviour:
@@ -866,7 +866,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiName: UILoginNew
-  uiData: []
+  uiData:
+  - fieldName: LoginBtn
+    componentType: Button
+    target: {fileID: 9142671546232768168}
 --- !u!1 &8274688129825040848
 GameObject:
   m_ObjectHideFlags: 0

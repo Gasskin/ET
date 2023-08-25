@@ -33,7 +33,7 @@ namespace ET
             Game.Scene.AddComponent<LuBanComponent>();
             Game.Scene.AddComponent<AssetComponent>();
             Game.Scene.AddComponent<UIFlowComponent>();
-            Game.Scene.AddComponent<UIFlowPathComponent>();
+            Game.Scene.AddComponent<UIFlowConfigComponent>();
             Game.Scene.AddComponent<UIFlowEventComponent>();
 
             await ResourcesComponent.Instance.LoadBundleAsync("unit.unity3d");
