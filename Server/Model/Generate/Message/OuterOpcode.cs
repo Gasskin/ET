@@ -42,5 +42,6 @@ namespace ET
 		 public const ushort M2C_TestActorMessage = 10039;
 		 public const ushort C2A_LoginAccount = 10040;
 		 public const ushort A2C_LoginAccount = 10041;
+		 public const ushort A2C_Disconnect = 10042;
 	}
 }

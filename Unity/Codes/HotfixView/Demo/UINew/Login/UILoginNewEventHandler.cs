@@ -14,7 +14,11 @@ namespace ET
             {
                 var account = this.View.Account.text;
                 var password = this.View.Password.text;
-                Log.Error($"{account}:{password}");
+                LoginHelper.Login(
+                    wnd.DomainScene(), 
+                    ConstValue.LoginAddress, 
+                    account,
+                    password).Coroutine();
             }));
         }
 

@@ -62,6 +62,14 @@ namespace ET
                         await DBManagerComponent.Instance.GetZoneDB(session.DomainZone()).Save(account);
                     }
 
+                    // 如果这个账号已经登陆过了，那么踢掉
+                    var sessionId = session.DomainScene().GetComponent<AccountSessionsComponent>().Get(account.Id);
+                    var sessionExit = Game.EventSystem.Get(sessionId) as Session;
+                    sessionExit?.Send(new A2C_Disconnect() { Error = 0 });
+                    sessionExit?.Disconnect();
+                    session.DomainScene().GetComponent<AccountSessionsComponent>().Add(account.Id, session.InstanceId);
+                    session.AddComponent<AccountCheckOutTimeComponent, long>(account.Id);
+                    
                     var token = TimeHelper.ServerNow().ToString() + RandomHelper.RandomNumber(int.MinValue, int.MaxValue);
                     session.DomainScene().GetComponent<TokenComponent>().Remove(account.Id);
                     session.DomainScene().GetComponent<TokenComponent>().Add(account.Id, token);
