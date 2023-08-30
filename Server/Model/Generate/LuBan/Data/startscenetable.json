@@ -54,5 +54,13 @@
     "SceneType": 7,
     "Name": "Account",
     "OuterPort": 10005
+  },
+  {
+    "Id": 8,
+    "StartProcessConfig": 1,
+    "StartZoneConfig": 1,
+    "SceneType": 8,
+    "Name": "LoginCenter",
+    "OuterPort": 10006
   }
 ]

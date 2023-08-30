@@ -155,8 +155,34 @@ message G2M_SessionDisconnect // IActorLocationMessage
 	int32 RpcId = 90;
 }
 
-message C2M_Test
+//ResponseType L2A_LoginAccount
+message A2L_LoginAccount // IActorRequest
 {
 	int32 RpcId = 90;
-	string test = 1;
+	int32 Error = 91;
+	string Message = 92;
+	int64 AccountId = 1;
+}
+
+message L2A_LoginAccount // IActorResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
+//ResponseType L2G_DisconnectGateUnit
+message L2G_DisconnectGateUnit // IActorRequest
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	int64 AccountId = 1;
+}
+
+message G2L_DissconnectGateUnit // IActorResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
 }

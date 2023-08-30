@@ -325,15 +325,71 @@ namespace ET
 
 	}
 
-	[Message(InnerOpcode.C2M_Test)]
+	[ResponseType(nameof(L2A_LoginAccount))]
+	[Message(InnerOpcode.A2L_LoginAccount)]
 	[ProtoContract]
-	public partial class C2M_Test: Object
+	public partial class A2L_LoginAccount: Object, IActorRequest
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
 
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
 		[ProtoMember(1)]
-		public string test { get; set; }
+		public long AccountId { get; set; }
+
+	}
+
+	[Message(InnerOpcode.L2A_LoginAccount)]
+	[ProtoContract]
+	public partial class L2A_LoginAccount: Object, IActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
+	[ResponseType(nameof(L2G_DisconnectGateUnit))]
+	[Message(InnerOpcode.L2G_DisconnectGateUnit)]
+	[ProtoContract]
+	public partial class L2G_DisconnectGateUnit: Object, IActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public long AccountId { get; set; }
+
+	}
+
+	[Message(InnerOpcode.G2L_DissconnectGateUnit)]
+	[ProtoContract]
+	public partial class G2L_DissconnectGateUnit: Object, IActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
 
 	}
 
