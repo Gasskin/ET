@@ -43,5 +43,8 @@ namespace ET
 		 public const ushort C2A_LoginAccount = 10040;
 		 public const ushort A2C_LoginAccount = 10041;
 		 public const ushort A2C_Disconnect = 10042;
+		 public const ushort C2A_GetServerInfos = 10043;
+		 public const ushort ServerInfoProto = 10044;
+		 public const ushort A2C_GetServerInfos = 10045;
 	}
 }
