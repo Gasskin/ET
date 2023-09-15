@@ -67,7 +67,7 @@ namespace ET
             return ErrorCode.ERR_Success;
         }
 
-        public static async ETTask<int> GetRole(Scene zoneScene, string name)
+        public static async ETTask<int> CreateRole(Scene zoneScene, string name)
         {
             A2C_CreateRole response;
 
@@ -92,6 +92,10 @@ namespace ET
                 return response.Error;
             }
 
+            var roleInfo = zoneScene.GetComponent<RoleInfosComponent>().AddChild<RoleInfo>();
+            roleInfo.FromMessage(response.RoleInfo);
+            zoneScene.GetComponent<RoleInfosComponent>().Add(roleInfo);
+            
             return ErrorCode.ERR_Success;
         }
     }
