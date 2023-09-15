@@ -21,7 +21,7 @@ namespace ET
                 session.Disconnect().Coroutine();
             }
 
-            foreach (var serverInfo in session.DomainScene().GetComponent<ServerInfoComponent>().GetAllServerInfo())
+            foreach (var serverInfo in session.DomainScene().GetComponent<ServerInfosComponent>().GetAllServerInfo())
             {
                 response.ServerInfoList.Add(serverInfo.ToMessage());
             }

@@ -34,14 +34,13 @@ namespace ET
             return ErrorCode.ERR_Success;
         }
 
-
         public static async ETTask<int> GetServerInfos(Scene zoneScene)
         {
             A2C_GetServerInfos response = null;
 
             try
             {
-                response = (A2C_GetServerInfos) await zoneScene.GetComponent<SessionComponent>().Session.Call(new C2A_GetServerInfos()
+                response = (A2C_GetServerInfos)await zoneScene.GetComponent<SessionComponent>().Session.Call(new C2A_GetServerInfos()
                 {
                     AccountId = zoneScene.GetComponent<AccountInfoComponent>().AccountId,
                     Token = zoneScene.GetComponent<AccountInfoComponent>().Token,
@@ -64,8 +63,35 @@ namespace ET
                 serverInfo.FromMessage(serverInfoProto);
                 zoneScene.GetComponent<ServerInfosComponent>().Add(serverInfo);
             }
-            
-            await ETTask.CompletedTask;
+
+            return ErrorCode.ERR_Success;
+        }
+
+        public static async ETTask<int> GetRole(Scene zoneScene, string name)
+        {
+            A2C_CreateRole response;
+
+            try
+            {
+                response = (A2C_CreateRole)await zoneScene.GetComponent<SessionComponent>().Session.Call(new C2A_CreateRole()
+                {
+                    AccountId = zoneScene.GetComponent<AccountInfoComponent>().AccountId,
+                    Token = zoneScene.GetComponent<AccountInfoComponent>().Token,
+                    Name = name,
+                    ServerId = 1,
+                });
+            }
+            catch (Exception e)
+            {
+                Log.Error(e.ToString());
+                return ErrorCode.ERR_NetWorkError;
+            }
+
+            if (response.Error != ErrorCode.ERR_Success)
+            {
+                return response.Error;
+            }
+
             return ErrorCode.ERR_Success;
         }
     }

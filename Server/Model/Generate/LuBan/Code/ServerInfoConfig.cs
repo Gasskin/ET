@@ -14,25 +14,25 @@ using System.Text.Json;
 namespace cfg
 {
 
-public sealed partial class StartZoneConfig :  Bright.Config.BeanBase 
+public sealed partial class ServerInfoConfig :  Bright.Config.BeanBase 
 {
-    public StartZoneConfig(JsonElement _json) 
+    public ServerInfoConfig(JsonElement _json) 
     {
         Id = _json.GetProperty("Id").GetInt32();
         ServerName = _json.GetProperty("ServerName").GetString();
         PostInit();
     }
 
-    public StartZoneConfig(int Id, string ServerName ) 
+    public ServerInfoConfig(int Id, string ServerName ) 
     {
         this.Id = Id;
         this.ServerName = ServerName;
         PostInit();
     }
 
-    public static StartZoneConfig DeserializeStartZoneConfig(JsonElement _json)
+    public static ServerInfoConfig DeserializeServerInfoConfig(JsonElement _json)
     {
-        return new StartZoneConfig(_json);
+        return new ServerInfoConfig(_json);
     }
 
     public int Id { get; private set; }
@@ -41,7 +41,7 @@ public sealed partial class StartZoneConfig :  Bright.Config.BeanBase
     /// </summary>
     public string ServerName { get; private set; }
 
-    public const int __ID__ = -457316368;
+    public const int __ID__ = -1669631661;
     public override int GetTypeId() => __ID__;
 
     public  void Resolve(Dictionary<string, object> _tables)

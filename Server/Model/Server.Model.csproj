@@ -30,6 +30,10 @@
       <Link>Demo\ServerInfo\ServerInfo.cs</Link>
     </Compile>
 
+    <Compile Include="..\..\Unity\Codes\Model\Demo\ServerInfo\ServerInfosComponent.cs">
+      <Link>Demo\ServerInfo\ServerInfosComponent.cs</Link>
+    </Compile>
+
     <Compile Include="..\..\Unity\Codes\Model\Demo\Unit\UnitType.cs">
       <Link>Demo\Unit\UnitType.cs</Link>
     </Compile>
