@@ -34,29 +34,69 @@ namespace ET
             return ErrorCode.ERR_Success;
         }
 
-        public static async ETTask LoginTest(Scene zoneScene, string address)
+        public static async ETTask<int> GetServerInfos(Scene zoneScene)
         {
+            A2C_GetServerInfos response = null;
+
             try
             {
-                Session session = null;
-                R2C_LoginTest r2CLoginTest = null;
-                try
+                response = (A2C_GetServerInfos)await zoneScene.GetComponent<SessionComponent>().Session.Call(new C2A_GetServerInfos()
                 {
-                    session = zoneScene.GetComponent<NetKcpComponent>().Create(NetworkHelper.ToIPEndPoint(address));
-                    r2CLoginTest = (R2C_LoginTest)await session.Call(new C2R_LoginTest() { Account = "", Password = "" });
-                    Log.Debug(r2CLoginTest.Key);
-                    session.Send(new C2R_SayHello() { Hello = "Hello" });
-                    await TimerComponent.Instance.WaitAsync(2000);
-                }
-                finally
-                {
-                    session?.Dispose();
-                }
+                    AccountId = zoneScene.GetComponent<AccountInfoComponent>().AccountId,
+                    Token = zoneScene.GetComponent<AccountInfoComponent>().Token,
+                });
             }
             catch (Exception e)
             {
                 Log.Error(e.ToString());
+                return ErrorCode.ERR_NetWorkError;
             }
+
+            if (response.Error != ErrorCode.ERR_Success)
+            {
+                return response.Error;
+            }
+
+            foreach (var serverInfoProto in response.ServerInfoList)
+            {
+                var serverInfo = zoneScene.GetComponent<ServerInfosComponent>().AddChild<ServerInfo>();
+                serverInfo.FromMessage(serverInfoProto);
+                zoneScene.GetComponent<ServerInfosComponent>().Add(serverInfo);
+            }
+
+            return ErrorCode.ERR_Success;
+        }
+
+        public static async ETTask<int> CreateRole(Scene zoneScene, string name)
+        {
+            A2C_CreateRole response;
+
+            try
+            {
+                response = (A2C_CreateRole)await zoneScene.GetComponent<SessionComponent>().Session.Call(new C2A_CreateRole()
+                {
+                    AccountId = zoneScene.GetComponent<AccountInfoComponent>().AccountId,
+                    Token = zoneScene.GetComponent<AccountInfoComponent>().Token,
+                    Name = name,
+                    ServerId = 1,
+                });
+            }
+            catch (Exception e)
+            {
+                Log.Error(e.ToString());
+                return ErrorCode.ERR_NetWorkError;
+            }
+
+            if (response.Error != ErrorCode.ERR_Success)
+            {
+                return response.Error;
+            }
+
+            var roleInfo = zoneScene.GetComponent<RoleInfosComponent>().AddChild<RoleInfo>();
+            roleInfo.FromMessage(response.RoleInfo);
+            zoneScene.GetComponent<RoleInfosComponent>().Add(roleInfo);
+            
+            return ErrorCode.ERR_Success;
         }
     }
 }
