@@ -1,0 +1,7 @@
+ManifestFileVersion: 0
+CRC: 3523497261
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: assets_assetspackage_ui_prefab.bundle
+      Dependencies: {}

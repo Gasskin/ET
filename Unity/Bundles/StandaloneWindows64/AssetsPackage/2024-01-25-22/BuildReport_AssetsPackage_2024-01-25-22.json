@@ -1,0 +1,78 @@
+{
+    "Summary": {
+        "YooVersion": "",
+        "UnityVersion": "2021.3.28f1",
+        "BuildDate": "2024/1/25 0:22:08",
+        "BuildSeconds": 2,
+        "BuildTarget": 19,
+        "BuildMode": 0,
+        "BuildPipeline": "BuiltinBuildPipeline",
+        "BuildPackageName": "AssetsPackage",
+        "BuildPackageVersion": "2024-01-25-22",
+        "UniqueBundleName": false,
+        "EnableAddressable": false,
+        "LocationToLower": false,
+        "IncludeAssetGUID": false,
+        "IgnoreDefaultType": true,
+        "AutoCollectShaders": true,
+        "EnableSharePackRule": true,
+        "EncryptionClassName": "null",
+        "FileNameStyle": 0,
+        "CompressOption": 2,
+        "DisableWriteTypeTree": false,
+        "IgnoreTypeTreeChanges": true,
+        "AssetFileTotalCount": 3,
+        "MainAssetTotalCount": 3,
+        "AllBundleTotalCount": 1,
+        "AllBundleTotalSize": 15877,
+        "EncryptedBundleTotalCount": 0,
+        "EncryptedBundleTotalSize": 0
+    },
+    "AssetInfos": [
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetsPackage/UI/Prefab/Login/UILoginNew.prefab",
+            "AssetGUID": "3946f427b96f4834992e6db0fe9259eb",
+            "AssetTags": [],
+            "MainBundleName": "assets_assetspackage_ui_prefab.bundle",
+            "MainBundleSize": 15877,
+            "DependAssets": []
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetsPackage/UI/Prefab/Login2/Test/UILoginNew3.prefab",
+            "AssetGUID": "aaa359f9c839701409cf689a3caf77ba",
+            "AssetTags": [],
+            "MainBundleName": "assets_assetspackage_ui_prefab.bundle",
+            "MainBundleSize": 15877,
+            "DependAssets": []
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetsPackage/UI/Prefab/Login2/UILoginNew2.prefab",
+            "AssetGUID": "dbc0161a1163bde40aca9c05fa90e149",
+            "AssetTags": [],
+            "MainBundleName": "assets_assetspackage_ui_prefab.bundle",
+            "MainBundleSize": 15877,
+            "DependAssets": []
+        }
+    ],
+    "BundleInfos": [
+        {
+            "BundleName": "assets_assetspackage_ui_prefab.bundle",
+            "FileName": "e4fa648d19001a31894c6ac8eda84474.bundle",
+            "FileHash": "e4fa648d19001a31894c6ac8eda84474",
+            "FileCRC": "36b4e5cf",
+            "FileSize": 15877,
+            "Encrypted": false,
+            "Tags": [],
+            "DependBundles": [],
+            "AllBuiltinAssets": [
+                "Assets/AssetsPackage/UI/Prefab/Login/UILoginNew.prefab",
+                "Assets/AssetsPackage/UI/Prefab/Login2/Test/UILoginNew3.prefab",
+                "Assets/AssetsPackage/UI/Prefab/Login2/UILoginNew2.prefab"
+            ]
+        }
+    ],
+    "IndependAssets": []
+}
