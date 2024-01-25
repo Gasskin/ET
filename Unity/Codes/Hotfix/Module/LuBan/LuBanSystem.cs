@@ -6,7 +6,7 @@ using UnityEngine;
 namespace ET
 {
     [FriendClass(typeof(LuBanComponent))]
-    public static class LuBanComponentSystem
+    public static class LuBanSystem
     {
         [ObjectSystem]
         public class AwakeSystem: AwakeSystem<LuBanComponent>
