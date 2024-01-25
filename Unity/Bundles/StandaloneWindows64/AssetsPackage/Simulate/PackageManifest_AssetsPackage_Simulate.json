@@ -1,0 +1,45 @@
+{
+    "FileVersion": "2.0.0",
+    "EnableAddressable": false,
+    "LocationToLower": false,
+    "IncludeAssetGUID": false,
+    "OutputNameStyle": 0,
+    "BuildPipeline": "BuiltinBuildPipeline",
+    "PackageName": "AssetsPackage",
+    "PackageVersion": "Simulate",
+    "AssetList": [
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetsPackage/UI/Prefab/Login/UILoginNew.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 0
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetsPackage/UI/Prefab/Login2/Test/UILoginNew3.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 0
+        },
+        {
+            "Address": "",
+            "AssetPath": "Assets/AssetsPackage/UI/Prefab/Login2/UILoginNew2.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 0
+        }
+    ],
+    "BundleList": [
+        {
+            "BundleName": "assets_assetspackage_ui_prefab.bundle",
+            "UnityCRC": 0,
+            "FileHash": "7836b81c5ed3cb78649f990d02b0e970",
+            "FileCRC": "00000000",
+            "FileSize": 87818,
+            "Encrypted": false,
+            "Tags": [],
+            "DependIDs": []
+        }
+    ]
+}

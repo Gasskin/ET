@@ -14,7 +14,8 @@ namespace ET
         public const int LoginCenterLock = 9;
         public const int GateLoginLock = 10;
         public const int CreateRole = 11;
-        public const int OpenWindow = 8; // 打开UI
+        public const int OpenWindow = 12; // 打开UI
+        public const int YooAsset = 13;
         public const int Max = 100; // 这个必须最大
     }
 }

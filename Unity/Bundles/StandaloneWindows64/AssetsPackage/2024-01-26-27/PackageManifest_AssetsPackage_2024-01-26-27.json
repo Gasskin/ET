@@ -3,10 +3,10 @@
     "EnableAddressable": false,
     "LocationToLower": false,
     "IncludeAssetGUID": false,
-    "OutputNameStyle": 0,
+    "OutputNameStyle": 1,
     "BuildPipeline": "BuiltinBuildPipeline",
     "PackageName": "AssetsPackage",
-    "PackageVersion": "2024-01-25-22",
+    "PackageVersion": "2024-01-26-27",
     "AssetList": [
         {
             "Address": "",

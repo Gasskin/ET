@@ -1,5 +1,8 @@
 ﻿
 
+using UnityEngine;
+using YooAsset;
+
 namespace ET
 {
 	public class AppStartInitFinish_CreateLoginUI: AEvent<EventType.AppStartInitFinish>
@@ -7,7 +10,7 @@ namespace ET
 		protected override void Run(EventType.AppStartInitFinish args)
 		{
 			UIHelper.Create(args.ZoneScene, UIType.UILogin, UILayer.Mid).Coroutine();
-			UIFlowComponent.Instance.OpenWindowAsync(WindowID.LoginNew);
+			// UIFlowComponent.Instance.OpenWindowAsync(WindowID.LoginNew);
 		}
 	}
 }
